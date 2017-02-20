@@ -26,7 +26,7 @@
   	text-align: center;
   }
   .content .ad_content img{
-  	display: none;
+  	/*display: none;*/
   }
   .content .ad_content:nth-child(1){
   	background-color: red;
@@ -47,8 +47,8 @@
   	position: fixed;
   	height: 100px;
   	width: 40px;
-  	right: 5%;
-  	top: 40%;
+  	right: 3%;
+  	top: 35%;
   }
   .nav ul li{
   	list-style: none;
@@ -59,45 +59,160 @@
   	margin: 12px;
   	box-shadow: 1px 1px 8px #000;
   }
-  .nav ul li .focus{
-  	background-color: black;
+  .nav ul .focus{
+    background-color: white;
+    opacity: 0.7;
+  }
+  .admove{
+    /*animation-name:admove;
+    animation-duration:1s;
+    animation-fill-mode:forwards;
+    animation-delay:0.2s;
+    -webkit-animation-name:admove;
+    -webkit-animation-duration:1s;
+    -webkit-animation-fill-mode:forwards;
+    -webkit-animation-delay:0.2s;*/
+    animation:admove 1s ease-in-out;
+    -webkit-animation:admove 1s ease-in-out;
+  }
+  .dsTitle{
+    width: 13%;
+    position: relative;
+    margin-top:-200px;
+    margin-left:0%;
+    animation:fadeIn 3s ease-in-out;
+    -webkit-animation:fadeIn 3s ease-in-out;
+  }
+  .ds1{
+    width:27%;
+    position: relative;
+    margin-top:0%;
+    margin-left:0%;
+  }
+  .ds2{
+    width:13%;
+    position: relative;
+    margin-top:0%;
+    margin-left:0%;
+  }
+  .ds3{
+    width:24.3%;
+    position: relative;
+    margin-top:0%;
+    margin-left:0%;
+  }
+  .ds4{
+    width:11.9%;
+    position: relative;
+    margin-top:0%;
+    margin-left:0%;
+  }
+  .ds5{
+    width:12.1%;
+    position: relative;
+    margin-top:0%;
+    margin-left:0%;
+  }
+  .ds6{
+    width:24.5%;
+    position: relative;
+    margin-top:0%;
+    margin-left:0%;
   }
 </style>
-<script type="text/javascript">
-  var content = document.getElementsByClassName('content');
-  var itemNum = 0;
-  document.onmousewheel = function(e){
-  	if(e.wheelDelta>0){
-  		if(itemNum==0){
-  			return;
-  		}
-  		itemNum--;
-  	}else{
-  		if(itemNum>5){
-  			return;
-  		}
-  		itemNum++;
-  	}
-  	var focus = document.querySelectorAll(".nav ul li")[itemNum];
-  	focus.classList.add("focus");
-
+<style id="keyframes">
+  @-webkit-keyframes fadeIn {
+    0% {
+    opacity: 0; /*初始状态 透明度为0*/
+    }
+    50% {
+    opacity: 0; /*中间状态 透明度为0*/
+    }
+    100% {
+    opacity: 1; /*结尾状态 透明度为1*/
+    }
   }
-</script>
+  @keyframes fadeIn {
+    0% {
+    opacity: 0; /*初始状态 透明度为0*/
+    }
+    50% {
+    opacity: 0; /*中间状态 透明度为0*/
+    }
+    100% {
+    opacity: 1; /*结尾状态 透明度为1*/
+    }
+  }
+</style>
+<style id="dynamic_keyframes"></style><!-- 动态改变keyframes -->
+
 <body>
-	<div class="content">
-      <div class="ad_content"><img src="images/end.jpg"/></div>
-      <div class="ad_content"><img src="images/end.jpg"/></div>
-      <div class="ad_content"><img src="images/end.jpg"/></div>
-      <div class="ad_content"><img src="images/end.jpg"/></div>
-      <div class="ad_content"><img src="images/end.jpg"/></div>
+	<div class="content" id="content">
+      <div class="ad_content">123</div>
+      <div class="ad_content">
+        <img class="dsTitle" src="images/ds0.gif"/>
+        <img class="ds1" src="images/ds1.jpg"/>
+        <img class="ds2" src="images/ds2.jpg"/>
+        <img class="ds3" src="images/ds3.jpg"/>
+        <img class="ds4" src="images/ds4.jpg"/>
+        <img class="ds5" src="images/ds5.jpg"/>
+        <img class="ds6" src="images/ds6.jpg"/>
+      </div>
+      <div class="ad_content">123</div>
+      <div class="ad_content">123</div>
+      <div class="ad_content">123</div>
 	</div>
 	<div class="nav">
 	  <ul>
-	    <li></li>
-	    <li></li>
-	    <li></li>
-	    <li></li>
-	    <li></li>
+	    <li class="focus"></li>
+	    <li class=""></li>
+	    <li class=""></li>
+	    <li class=""></li>
+	    <li class=""></li>
 	  </ul>
 	</div>
+
+<!-- *********************************************script****************************************************** -->
+  <script type="text/javascript">
+
+  var itemNum = 0; //第几屏
+  var nowPosition = 0; //当前动画位置
+  function initKeyframes(from,to){ //动态更改动画轨迹参数
+    var keyframes = document.getElementById("dynamic_keyframes");
+    keyframes.innerHTML = '@-webkit-keyframes admove{from {top:'+from+'px;} to{top:'+to+'px;} }\n'
+    +'@keyframes admove{from {top:'+from+'px;} to{top:'+to+'px;} }';
+  }
+  var adListener = function(e){
+    var h = document.body.clientHeight; //动态获取网页可见内容的高度
+    var from;
+    var to;
+    if(e.wheelDelta>0){
+      if(itemNum<=0){
+        return;
+      }
+      itemNum--;
+    }else{
+      if(itemNum>=4){
+        return;
+      }
+      itemNum++;
+    }
+    for(var i = 0;i<5;i++){
+      document.querySelectorAll(".nav ul li")[i].classList.remove("focus");
+    }
+    document.querySelectorAll(".nav ul li")[itemNum].classList.add("focus");
+    var from = nowPosition; //from为上次记录位置
+    var to = -itemNum*h; //第几屏乘以屏高，为元素的偏移距离
+    nowPosition = to; //记录当前位置
+    initKeyframes(from,to);
+    document.getElementById("content").classList.add("admove");
+    document.onmousewheel = null;
+  }
+  document.getElementById("content").addEventListener("animationend",function(){ //动画完毕监听
+    this.classList.remove("admove");
+    this.setAttribute("style","top:"+nowPosition+"px;");
+    document.onmousewheel = adListener;
+  });
+  document.onmousewheel = adListener; //思路：执行动画开始后删除滚轮监听，动画执行完毕后再重新给以监听，避免动画重叠影响
+</script>
 </html>
