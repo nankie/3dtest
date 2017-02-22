@@ -75,50 +75,55 @@
     animation:admove 1s ease-in-out;
     -webkit-animation:admove 1s ease-in-out;
   }
-  .dsTitle{
-    width: 13%;
+  .ds_content{
+    /*定位练手一：利用父relative限制子absolute定位，缺点：不同屏幕分辨率不兼容*/
     position: relative;
-    margin-top:-200px;
-    margin-left:0%;
+    width: 100%;
+    height: 100%;
+  }
+  .dsTitle{
+    width:50%;
+    height:50%;
+    position: absolute;
+    top:12%;
+    left:8%;
     animation:fadeIn 3s ease-in-out;
     -webkit-animation:fadeIn 3s ease-in-out;
   }
+  .dsTitle img{
+    width: 30%;
+  }
   .ds1{
-    width:27%;
-    position: relative;
-    margin-top:0%;
-    margin-left:0%;
+    width:50%;
+    height:50%;
+    position: absolute;
+    top:46%;
+    left:13%;
+  }
+  .ds1 img{
+    width: 50%;
   }
   .ds2{
-    width:13%;
-    position: relative;
-    margin-top:0%;
-    margin-left:0%;
+    width:50%;
+    height:50%;
+    position: absolute;
+    top:14%;
+    left:22%;
+  }
+  .ds2 img{
+    width: 20%;
   }
   .ds3{
-    width:24.3%;
-    position: relative;
-    margin-top:0%;
-    margin-left:0%;
+    width:50%;
+    height:50%;
+    position: absolute;
+    top:12%;
+    left:40%;
   }
-  .ds4{
-    width:11.9%;
-    position: relative;
-    margin-top:0%;
-    margin-left:0%;
+  .ds3 img{
+    width: 43.5%;
   }
-  .ds5{
-    width:12.1%;
-    position: relative;
-    margin-top:0%;
-    margin-left:0%;
-  }
-  .ds6{
-    width:24.5%;
-    position: relative;
-    margin-top:0%;
-    margin-left:0%;
-  }
+  
 </style>
 <style id="keyframes">
   @-webkit-keyframes fadeIn {
@@ -148,19 +153,18 @@
 
 <body>
 	<div class="content" id="content">
-      <div class="ad_content">123</div>
+      <div class="ad_content"></div>
       <div class="ad_content">
-        <img class="dsTitle" src="images/ds0.gif"/>
-        <img class="ds1" src="images/ds1.jpg"/>
-        <img class="ds2" src="images/ds2.jpg"/>
-        <img class="ds3" src="images/ds3.jpg"/>
-        <img class="ds4" src="images/ds4.jpg"/>
-        <img class="ds5" src="images/ds5.jpg"/>
-        <img class="ds6" src="images/ds6.jpg"/>
+        <div class="ds_content">
+          <div class="dsTitle"><img src="images/ds0.gif"/></div>
+          <div class="ds1"><img src="images/ds1.jpg"/></div>
+          <div class="ds2"><img src="images/ds2.jpg"/></div>
+          <div class="ds3"><img src="images/ds3.jpg"/></div>
+        </div>
       </div>
-      <div class="ad_content">123</div>
-      <div class="ad_content">123</div>
-      <div class="ad_content">123</div>
+      <div class="ad_content"></div>
+      <div class="ad_content"></div>
+      <div class="ad_content"></div>
 	</div>
 	<div class="nav">
 	  <ul>
